@@ -83,7 +83,7 @@ class _HomeState extends State<Home> {
                                   value: (overview.mcap == null)
                                       ? "-"
                                       : overview.mcap!
-                                          .toStringAsPrecision(15)
+                                          .toStringAsFixed(2)
                                           .replaceAllMapped(
                                               RegExp(
                                                   r'(\d{1,3})(?=(\d{3})+(?!\d))'),
@@ -98,24 +98,22 @@ class _HomeState extends State<Home> {
                                   value: (overview.bookNavPerShare == null)
                                       ? "-"
                                       : overview.bookNavPerShare!
-                                          .toStringAsPrecision(5)),
+                                          .toStringAsFixed(2)),
                               OverviewSectionItem(
                                   name: "Price-Earning Ratio (PE)",
                                   value: (overview.ttmpe == null)
                                       ? "-"
-                                      : overview.ttmpe!.toStringAsPrecision(4)),
+                                      : overview.ttmpe!.toStringAsFixed(2)),
                               OverviewSectionItem(
                                   name: "PEG Ratio",
                                   value: (overview.pegRatio == null)
                                       ? "-"
-                                      : overview.pegRatio!
-                                          .toStringAsPrecision(3)),
+                                      : overview.pegRatio!.toStringAsFixed(2)),
                               OverviewSectionItem(
                                   name: "Dividend Yield",
                                   value: (overview.theYield == null)
                                       ? "-"
-                                      : overview.theYield!
-                                          .toStringAsPrecision(3)),
+                                      : overview.theYield!.toStringAsFixed(2)),
                             ],
                           )
                         ],

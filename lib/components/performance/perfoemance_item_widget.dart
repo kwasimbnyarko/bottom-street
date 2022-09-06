@@ -4,11 +4,11 @@ import 'package:bottom_street/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class PerformanceItemWidget extends StatelessWidget {
-  double absoluteHighestPercentage;
-  Performance? item;
+  final double absoluteHighestPercentage;
+  final Performance? item;
 
-  PerformanceItemWidget(
-      {required this.absoluteHighestPercentage, required this.item});
+  const PerformanceItemWidget(
+      {super.key, required this.absoluteHighestPercentage, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class PerformanceItemWidget extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 5,
+            flex: 6,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
@@ -48,7 +48,7 @@ class PerformanceItemWidget extends StatelessWidget {
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.topRight,
-                    colors: [barColor, Color(0xffe3e3e3)]),
+                    colors: [barColor, const Color(0xffe3e3e3)]),
               ),
               width: 35,
               height: 35,
@@ -56,7 +56,7 @@ class PerformanceItemWidget extends StatelessWidget {
           ),
           Expanded(
               flex: 2,
-              child: PercentegeUpAndDown(
+              child: PercentageUpAndDown(
                 percentage: (item == null) ? 0 : item!.changePercent,
               ))
         ],

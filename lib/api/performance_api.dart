@@ -11,12 +11,6 @@ class PerformanceApi {
         "https://api.stockedge.com/Api/SecurityDashboardApi/GetTechnicalPerformanceBenchmarkForSecurity/5051?lang=en");
 
     final response = await http.get(url);
-
-    print(
-        "CHCHCCHCHCHH\nCHCHCCHCHCHH\nCHCHCCHCHCHH\nCHCHCCHCHCHH\nCHCHCCHCHCHH\nCHCHCCHCHCHH\n");
-    print(response.statusCode);
-    print(response.body);
-
     List<dynamic> performanceResponse = json.decode(response.body);
     for (Map performance in performanceResponse) {
       Performance tempPerformance = Performance();

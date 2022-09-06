@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class PercentegeUpAndDown extends StatelessWidget {
+class PercentageUpAndDown extends StatelessWidget {
   final double? percentage;
-  const PercentegeUpAndDown({required this.percentage});
+  const PercentageUpAndDown({super.key, required this.percentage});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class PercentegeUpAndDown extends StatelessWidget {
         Icon((isUp) ? Icons.arrow_upward : Icons.arrow_downward,
             color: (isUp) ? Colors.green : Colors.red),
         Text(
-          percentage!.toStringAsFixed(1) + "%",
+          "${percentage!.toStringAsFixed(1)}%",
           style: TextStyle(
               fontWeight: FontWeight.w500,
               color: (isUp) ? Colors.green : Colors.red),
