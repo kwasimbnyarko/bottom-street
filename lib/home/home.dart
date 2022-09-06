@@ -1,8 +1,10 @@
 import 'package:bottom_street/api/overview_api.dart';
-import 'package:bottom_street/components/section_property.dart';
+import 'package:bottom_street/api/performance_api.dart';
+import 'package:bottom_street/components/overview/overview_section_item.dart';
 import 'package:bottom_street/models/overview.dart';
+import 'package:bottom_street/models/performance_model.dart';
 import 'package:flutter/material.dart';
-import '../components/percentage_up_and_down.dart';
+import '../components/performance/perfoemance_item_widget.dart';
 import '../utils/constants.dart';
 
 class Home extends StatefulWidget {
@@ -14,6 +16,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Overview overview = Overview();
+  List<Performance> listOfPerformances = [];
+  double? absoluteHighest;
   @override
   void initState() {
     super.initState();
@@ -21,6 +25,13 @@ class _HomeState extends State<Home> {
     overviewAPI.getOverview().then((value) {
       setState(() {
         overview = overviewAPI.overview;
+      });
+    });
+    PerformanceApi performanceApi = PerformanceApi();
+    performanceApi.getPerformances().then((value) {
+      setState(() {
+        listOfPerformances = performanceApi.listOfPerformances;
+        absoluteHighest = performanceApi.absoluteHighestPerformance;
       });
     });
   }
@@ -57,17 +68,17 @@ class _HomeState extends State<Home> {
                           const Divider(thickness: 0.6, color: Colors.grey),
                           Column(
                             children: [
-                              OverviewSectionProperty(
+                              OverviewSectionItem(
                                   name: "Sector",
                                   value: (overview.sector == null)
                                       ? "-"
                                       : overview.sector!),
-                              OverviewSectionProperty(
+                              OverviewSectionItem(
                                   name: "Industry",
                                   value: (overview.industry == null)
                                       ? "-"
                                       : overview.industry!),
-                              OverviewSectionProperty(
+                              OverviewSectionItem(
                                   name: "Market Cap.",
                                   value: (overview.mcap == null)
                                       ? "-"
@@ -77,29 +88,29 @@ class _HomeState extends State<Home> {
                                               RegExp(
                                                   r'(\d{1,3})(?=(\d{3})+(?!\d))'),
                                               (Match m) => '${m[1]},')),
-                              OverviewSectionProperty(
+                              OverviewSectionItem(
                                   name: "Enterprise Value",
                                   value: (overview.ev == null)
                                       ? "-"
                                       : overview.ev!),
-                              OverviewSectionProperty(
+                              OverviewSectionItem(
                                   name: "Book Value / Share",
                                   value: (overview.bookNavPerShare == null)
                                       ? "-"
                                       : overview.bookNavPerShare!
                                           .toStringAsPrecision(5)),
-                              OverviewSectionProperty(
+                              OverviewSectionItem(
                                   name: "Price-Earning Ratio (PE)",
                                   value: (overview.ttmpe == null)
                                       ? "-"
                                       : overview.ttmpe!.toStringAsPrecision(4)),
-                              OverviewSectionProperty(
+                              OverviewSectionItem(
                                   name: "PEG Ratio",
                                   value: (overview.pegRatio == null)
                                       ? "-"
                                       : overview.pegRatio!
                                           .toStringAsPrecision(3)),
-                              OverviewSectionProperty(
+                              OverviewSectionItem(
                                   name: "Dividend Yield",
                                   value: (overview.theYield == null)
                                       ? "-"
@@ -127,19 +138,78 @@ class _HomeState extends State<Home> {
                           const Divider(thickness: 0.6, color: Colors.grey),
                           Column(
                             children: <Widget>[
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text("1 Day"),
-                                  Container(
-                                    color: Colors.grey,
-                                    width: 10,
-                                    height: 10,
-                                  ),
-                                  PercentegeUpAndDown()
-                                ],
-                              )
+                              PerformanceItemWidget(
+                                item: (listOfPerformances.isEmpty)
+                                    ? null
+                                    : listOfPerformances[0],
+                                absoluteHighestPercentage:
+                                    (absoluteHighest == null)
+                                        ? 100
+                                        : absoluteHighest!,
+                              ),
+                              PerformanceItemWidget(
+                                item: (listOfPerformances.isEmpty)
+                                    ? null
+                                    : listOfPerformances[1],
+                                absoluteHighestPercentage:
+                                    (absoluteHighest == null)
+                                        ? 100
+                                        : absoluteHighest!,
+                              ),
+                              PerformanceItemWidget(
+                                item: (listOfPerformances.isEmpty)
+                                    ? null
+                                    : listOfPerformances[2],
+                                absoluteHighestPercentage:
+                                    (absoluteHighest == null)
+                                        ? 100
+                                        : absoluteHighest!,
+                              ),
+                              PerformanceItemWidget(
+                                item: (listOfPerformances.isEmpty)
+                                    ? null
+                                    : listOfPerformances[3],
+                                absoluteHighestPercentage:
+                                    (absoluteHighest == null)
+                                        ? 100
+                                        : absoluteHighest!,
+                              ),
+                              PerformanceItemWidget(
+                                item: (listOfPerformances.isEmpty)
+                                    ? null
+                                    : listOfPerformances[4],
+                                absoluteHighestPercentage:
+                                    (absoluteHighest == null)
+                                        ? 100
+                                        : absoluteHighest!,
+                              ),
+                              PerformanceItemWidget(
+                                item: (listOfPerformances.isEmpty)
+                                    ? null
+                                    : listOfPerformances[5],
+                                absoluteHighestPercentage:
+                                    (absoluteHighest == null)
+                                        ? 100
+                                        : absoluteHighest!,
+                              ),
+                              PerformanceItemWidget(
+                                item: (listOfPerformances.isEmpty)
+                                    ? null
+                                    : listOfPerformances[6],
+                                absoluteHighestPercentage:
+                                    (absoluteHighest == null)
+                                        ? 100
+                                        : absoluteHighest!,
+                              ),
+                              PerformanceItemWidget(
+                                item: (listOfPerformances.isEmpty)
+                                    ? null
+                                    : listOfPerformances[7],
+                                absoluteHighestPercentage:
+                                    (absoluteHighest == null)
+                                        ? 100
+                                        : absoluteHighest!,
+                              ),
                             ],
                           )
                         ],

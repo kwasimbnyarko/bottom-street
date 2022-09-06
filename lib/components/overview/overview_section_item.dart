@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../utils/constants.dart';
+import '../../utils/constants.dart';
 
-class OverviewSectionProperty extends StatelessWidget {
+class OverviewSectionItem extends StatelessWidget {
   final String name;
   final String value;
 
-  const OverviewSectionProperty(
+  const OverviewSectionItem(
       {super.key, required this.value, required this.name});
 
   @override
@@ -23,7 +23,7 @@ class OverviewSectionProperty extends StatelessWidget {
         children: [
           Text(
             name,
-            style: sectionPropertyStyle,
+            style: sectionItemStyle,
           ),
           Row(children: <Widget>[
             FaIcon(
@@ -32,7 +32,7 @@ class OverviewSectionProperty extends StatelessWidget {
             ),
             Text(
               value,
-              style: sectionPropertyStyle,
+              style: sectionItemStyle,
             ),
           ])
         ],
