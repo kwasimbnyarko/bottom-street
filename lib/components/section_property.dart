@@ -1,28 +1,40 @@
 import 'package:flutter/material.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../utils/constants.dart';
 
-class SectionProperty extends StatelessWidget {
-  final String? name;
-  final String? value;
+class OverviewSectionProperty extends StatelessWidget {
+  final String name;
+  final String value;
 
-  const SectionProperty({super.key, required this.value, this.name});
+  const OverviewSectionProperty(
+      {super.key, required this.value, required this.name});
 
   @override
   Widget build(BuildContext context) {
+    bool hasBankInValue = false;
+    if (value.startsWith("Bank")) {
+      hasBankInValue = true;
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
+        children: [
           Text(
-            "Sector",
+            name,
             style: sectionPropertyStyle,
           ),
-          Text(
-            "Banking",
-            style: sectionPropertyStyle,
-          )
+          Row(children: <Widget>[
+            FaIcon(
+              FontAwesomeIcons.buildingColumns,
+              color: (hasBankInValue) ? appGoldColor : const Color(0x00ffffff),
+            ),
+            Text(
+              value,
+              style: sectionPropertyStyle,
+            ),
+          ])
         ],
       ),
     );
