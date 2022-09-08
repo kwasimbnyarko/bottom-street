@@ -1,5 +1,5 @@
 # bottom-street
-Assignment for a techniciacl Interview paprclip
+Assignment for a technical Interview with PaprClip
 
 Built for Android API 32
 
